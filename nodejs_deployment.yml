@@ -1,5 +1,11 @@
 ---
+- hosts: localhost
+  roles:
+    - nginx
 
+- hosts: localhost
+  roles:
+    - buildset-publish
 
 - hosts: localhost
   roles:
