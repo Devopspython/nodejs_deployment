@@ -1,0 +1,10 @@
+---
+
+
+- hosts: localhost
+  roles:
+    - buildset-resolve
+
+- hosts: localhost
+  roles:
+    - buildset-publish
