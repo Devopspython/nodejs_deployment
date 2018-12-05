@@ -1,2 +1,26 @@
 ---
-# tasks file for roles/buildset-resolve
+
+- name: Make target directory
+  file:
+    path: ./target/buildsetv1
+    state: directory
+
+- name: Check if pointer.properties exists
+  stat:
+    path: ./target/buildsetv1/pointer.properties
+  register: pointerexists
+
+- name: Make pointer file
+  file:
+    path: ./target/buildsetv1/pointer.properties
+    state: touch
+
+- name: Download buildset last known good pointer file.
+  maven_artifact:
+    group_id: "{{ deploy_namespace }}"
+    artifact_id: "{{ previous_environment }}"
+    version: "{{ deploy_branch_prefix | trim }}"
+    dest: "./target/buildsetv1/pointer.properties"
+    repository_url: "{{ repo_url }}/"
+    extension: "properties"
+  when: release_version == "autoselect"

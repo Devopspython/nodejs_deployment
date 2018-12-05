@@ -1,2 +1,2 @@
 ---
-# defaults file for roles/buildset-resolve
+repo_url: http://192.168.56.101:8081/repository/maven-hosted-releaseversions/
